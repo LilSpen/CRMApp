@@ -1,6 +1,11 @@
 import { toast } from "react-toastify";
 import "./login.css";
 import { useState } from "react";
+import { createUserWithEmailAndPassword } from "firebase/auth"
+import { doc, setDoc } from "firebase/firestore"
+import { auth, db } from "../../lib/firebase";
+
+
 
 const Login = () => {
 
@@ -11,6 +16,34 @@ const Login = () => {
 
     const handleLogin = e => {
         e.preventDefault()
+    }
+
+    const handleRegister = async e => {
+        e.preventDefault()
+        const formData = new FormData(e.target);
+
+        const { username, email, password } = Object.fromEntries(formData);
+        try {
+            const res = await createUserWithEmailAndPassword(auth, email, password)
+
+            await setDoc(doc(db, 'users', res.user.uid), {
+                username,
+                email,
+                id: res.user.uid,
+                blocked: [],
+            });
+
+            await setDoc(doc(db, 'userchats', res.user.uid), {
+                chats: [],
+            });
+
+            toast.success("Account created, you can login now!")
+
+
+        } catch (err) {
+            console.log(err)
+            toast.error(err.message)
+        }
     }
 
     const handleAvatar = e => {
@@ -26,7 +59,7 @@ const Login = () => {
         <div className='login' >
             <div className="items">
                 <h2>Welcome Back,</h2>
-                <form>
+                <form onSubmit={handleLogin}>
                     <input type="text" placeholder="Email" name="email" />
                     <input type="password" placeholder="Password" name="password" />
                     <button>Sign In</button>
@@ -35,9 +68,9 @@ const Login = () => {
             <div className="separator"></div>
             <div className="items">
                 <h2>Create an Account</h2>
-                <form>
+                <form onSubmit={handleRegister}>
                     <label htmlFor='file'>
-                        <img src={avatar.url || "./avatar.png"} alt="" />
+                        <img src={avatar.url || "/avatar.png"} alt="" />
                         Upload an Image</label>
                     <input type="file" id="file" style={{ display: 'none' }} onChange={handleAvatar} />
                     <input type="text" placeholder="Username" name="username" />

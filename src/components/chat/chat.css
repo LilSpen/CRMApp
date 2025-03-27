@@ -71,6 +71,19 @@
             max-width: 70%;
             display: flex;
 
+            .texts {
+                p {
+                    padding: 20px;
+                    border-radius: 10px;
+                    background-color: rgba(17, 25, 40, 0.3);
+                    color: white;
+                }
+
+                span {
+                    font-size: 13px;
+                }
+            }
+
 
             &.own {
                 align-self: flex-end;
@@ -79,6 +92,7 @@
                 .texts {
                     p {
                         background-color: blue;
+                        opacity: 100%;
                     }
                 }
             }

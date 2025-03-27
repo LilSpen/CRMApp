@@ -29,12 +29,45 @@ const Detail = () => {
                     </div>
                 </div>
                 <div className="photos">
-                    <div className="photoItems">
-                        <span>photo_2023_2.png</span>
-                        <img src="./arrowUp.png" alt="" />
+                    <div className="photoItem">
+                        <div className="photoDetail">
+                            <img src="./download.png" alt="" className="icon" />
+                            <span>photo_2023_2.png</span>
 
+                        </div>
+                        <img src="./download.png" alt="" className="icon" />
                     </div>
-                    <img src="./download.png" alt="" />
+                    <div className="photoItem">
+                        <div className="photoDetail">
+                            <img src="./download.png" alt="" className="icon" />
+                            <span>photo_2023_2.png</span>
+                        </div>
+                        <img src="./download.png" alt="" className="icon" />
+                    </div>
+                    <div className="photoItem">
+                        <div className="photoDetail">
+                            <img src="./download.png" alt="" className="icon" />
+                            <span>photo_2023_2.png</span>
+
+                        </div>
+                        <img src="./download.png" alt="" className="icon" />
+                    </div>
+                    <div className="photoItem">
+                        <div className="photoDetail">
+                            <img src="./download.png" alt="" className="icon" />
+                            <span>photo_2023_2.png</span>
+
+                        </div>
+                        <img src="./download.png" alt="" className="icon" />
+                    </div>
+                </div>
+                <div className="option">
+                    <div className="title">
+                        <span>Shared Files</span>
+                        <img src="./arrowUp.png" alt="" />
+                    </div>
+                    <button>Block User</button>
+                    <button className="logout">Log Out</button>
                 </div>
             </div>
         </div>
